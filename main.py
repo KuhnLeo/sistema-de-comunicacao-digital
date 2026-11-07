@@ -1,4 +1,4 @@
-import binary_conversor
+import binary_conversor as bc
 
 mensagem = "Ola, mundo"
 
