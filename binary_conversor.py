@@ -4,7 +4,7 @@ def ascii_to_binary(mensagem):
   return binario
 
 def binary_to_ascii(binario):
-  characters = mensagem.split()
+  characters = binario.split()
   ascii = ''.join(chr(int(caractere, 2)) for caractere in characters)
   print("Realizando conversão...\nCódigo binário: ", binario, "\nMensagem convertida: ", ascii)
   return ascii
