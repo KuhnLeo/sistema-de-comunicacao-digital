@@ -1,6 +1,6 @@
 import binary_conversor as bc
 
-mensagem = "Ola, mundo"
+mensagem = "Inter maior do mundo"
 
 binario = bc.ascii_to_binary(mensagem)
 
