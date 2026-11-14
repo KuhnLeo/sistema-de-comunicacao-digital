@@ -7,4 +7,4 @@ python -m pip show numpy
 Caso contrário, instale
 python -m pip install numpy
 
-Se o código apresentar erros após instalar todas as dependências abre o terminal no main e execute 'python main.py'
+Se o código apresentar erros após instalar todas as dependências abra o terminal no main e execute 'python main.py'
