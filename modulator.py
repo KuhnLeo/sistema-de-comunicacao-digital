@@ -11,6 +11,7 @@ def bpsk(bits, A, apb, fp, t):
   return bpsk
 
 def qam16(bits, A, apb, fp, t):
+  # s(t) = (A / √10)[I cos(2pi fpt) - Q sin(2pi fpt)
   if len(bits) % 4 != 0:
     raise ValueError("A quantidade de bits deve ser múltipla de 4")
 
