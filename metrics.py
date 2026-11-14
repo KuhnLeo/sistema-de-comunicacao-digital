@@ -1,3 +1,5 @@
+import numpy as np
+
 def ber(bits_tx, bits_rx):
     erros = bits_tx != bits_rx
     return erros.mean(), np.flatnonzero(erros)
