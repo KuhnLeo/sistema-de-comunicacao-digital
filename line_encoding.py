@@ -8,5 +8,5 @@ def nrz_unipolar(bits, A, apb):
 def manchester(bits, A, apb):
   print("Codificando com Manchester IEEE 802.3...")
   manchester_half = np.where(bits[:, None] == 1, [-A, A], [A, -A])
-  manchester = np.repeat(manchester_half, apb // 2m axis=1).reshape(-1)
+  manchester = np.repeat(manchester_half, apb // 2, axis=1).reshape(-1)
   return manchester
