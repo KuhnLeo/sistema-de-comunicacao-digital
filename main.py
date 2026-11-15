@@ -13,7 +13,7 @@ CANAL = "RAJADAS" # "AWGN", "RAJADAS"
 A = 1.0            # AMPLITUDE
 APB = 20           # AMOSTRAS POR BIT (COM MANCHESTER DEVE SER PAR)
 FP = 2.0           # FREQUENCIA DA PORTADORA
-EBN0_DB = 10.0     # SNR
+SNR = 10.0         # SNR
 SEED = 42
 
 
@@ -73,11 +73,11 @@ def executar_validacao_unica():
   # Canal de transmissão
   print("----- Canal de Transmissão ----- ")
   if CANAL == "AWGN":
-    print(f"Transmitindo por canal AWGN (Eb/N0 = {EBN0_DB} dB)...")
-    sinal_rx = c.awgn(sinal_tx, EBN0_DB, n_bits_transmissao, rng)
+    print(f"Transmitindo por canal AWGN ({SNR} dB)...")
+    sinal_rx = c.awgn(sinal_tx, SNR, n_bits_transmissao, rng)
   elif CANAL == "RAJADAS":
-    print(f"Transmitindo por canal AWGN com rajadas (Eb/N0 = {EBN0_DB} dB)...")
-    sinal_rx = c.awgn_rajadas(sinal_tx, EBN0_DB, n_bits_transmissao, rng, bloco = APB * 10)
+    print(f"Transmitindo por canal AWGN com rajadas ({SNR} dB)...")
+    sinal_rx = c.awgn_rajadas(sinal_tx, SNR, n_bits_transmissao, rng, bloco = APB * 10)
   else:
     raise ValueError("Canal inválido!")
     
