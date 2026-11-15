@@ -17,9 +17,6 @@ def manchester(bits, A, apb):
 def decode_nrz_unipolar(sinal, A, apb):
   print("Decodificando NRZ Unipolar...")
 
-  if apb <= 0 or len(sinal) % apb != 0:
-    raise ValueError("Tamanho do sinal NRZ inválido")
-
   blocos = np.asarray(sinal).reshape(-1, apb)
   medias = np.mean(blocos, axis=1)
   bits = np.where(medias > A / 2, 1, 0)
@@ -30,11 +27,6 @@ def decode_nrz_unipolar(sinal, A, apb):
 
 def decode_manchester(sinal, A, apb):
   print("Decodificando Manchester...")
-
-  if apb <= 0 or apb % 2 != 0:
-    raise ValueError("APB deve ser positivio e par")
-  if len(sinal) % apb != 0:
-    raise ValueError("Tamanho do sinal Manchester inválido")
 
   blocos = np.asarray(sinal).reshape(-1, apb)
 
