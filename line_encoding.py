@@ -43,4 +43,5 @@ def decode_manchester(sinal, A, apb):
 
   bits = np.where(media2 > media1, 1, 0)
 
+  print("Manchester decodificado com sucesso!")
   return bits.astype(int)
