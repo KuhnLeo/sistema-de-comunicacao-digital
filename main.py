@@ -4,7 +4,7 @@ import line_encoding as le
 import metrics
 import modulator as mod
 
-MODO_TRANSMISSAO == "LINHA" # "LINHA", "MODULACAO"
+MODO_TRANSMISSAO = "LINHA" # "LINHA", "MODULACAO"
 CODIFICACAO_LINHA = "MANCHESTER" # "NRZ", "MANCHESTER"
 MODULACAO = "ASK" # "ASK", "BPSK", "16QAM"
 CANAL = "AWGN" # "AWGN", "RAJADAS"
@@ -34,8 +34,8 @@ def executar_validacao_unica():
   print(f"Hamming (7,4) aplicado: {tam_original} bits -> {len(bits_tx)} bits.\n")
 
   pad_16qam = 0
-  if MODUO_TRANSMISSAO == "MODULACAO" and MODULACAO == "16QAM:
-  resto = len(bits_tx) % 4
+  if MODO_TRANSMISSAO == "MODULACAO" and MODULACAO == "16QAM":
+    resto = len(bits_tx) % 4
   if resto != 0:
     pad_16qam = 4 - resto
     bits_tx = np.append(bits_tx, np.zeros(pad_16qam, dtype=int))
