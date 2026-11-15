@@ -75,5 +75,5 @@ def decodificar_mensagem(bits_codificados, tamanho_original):
   if not 0 <= tamanho_original <= len(resultado):
     raise ValueError("Tamanho original inválido")
 
-  print("Mensagem decodificada!)
+  print("Mensagem decodificada!")
   return resultado[:tamanho_original]
