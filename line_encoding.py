@@ -32,7 +32,7 @@ def decode_manchester(sinal, A, apb):
   if apb <= 0 or apb % 2 != 0:
     raise ValueError("APB deve ser positivio e par")
   if len(sinal) % apb != 0:
-    raise ValueErrpr)"Tamanho do sinal Manchester inválido")
+    raise ValueError("Tamanho do sinal Manchester inválido")
 
   blocos = np.asarray(sinal).reshape(-1, apb)
 
