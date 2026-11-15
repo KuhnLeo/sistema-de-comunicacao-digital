@@ -21,23 +21,23 @@ def codificar(dados):
   for p in posicoes_paridade:
     paridade = 0
     for posicao in range(7):
-      if (posicao+1+ & (p+1):
+      if (posicao+1) & (p+1):
         paridade ^= codigo[posicao]
 
-  codigo[p] = paridade
+    codigo[p] = paridade
   return "".join(str(bit) for bit in codigo)
 
 def verificar(resultado):
   print("Verificando erros com Hamming...")
   codigo = [int(bit) for bit in resultado]
-  posicoes_paridade [0, 1, 3]
+  posicoes_paridade = [0, 1, 3]
   sindrome = 0
 
   for p in posicoes_paridade:
     paridade = 0
     for posicao in range(7):
-      if posicao+1) & (p+1):
-      paridade ^= codigo[posicao]
+      if (posicao+1) & (p+1):
+        paridade ^= codigo[posicao]
 
     if paridade:
       sindrome += p+1
@@ -52,7 +52,7 @@ def extrair_dados(codigo):
   posicoes_dados = [2, 4, 5, 6]
   return "".join(codigo[i] for i in posicoes_dados)
 
-def codficiar_mensagem(bits):
+def codificar_mensagem(bits):
   tamanho_original = len(bits)
   while len(bits) % 4 != 0:
     bits += "0"
@@ -65,11 +65,11 @@ def codficiar_mensagem(bits):
 
   return resultado, tamanho_original
 
-def decodificar_mensagem(bits_codificados, tamanho_original)
+def decodificar_mensagem(bits_codificados, tamanho_original):
   resultado = ""
   for i in range(0, len(bits_codificados), 7):
     bloco = bits_codificados[i:i + 7]
-    bloco+corrigido = verificar(bloco)
+    bloco_corrigido = verificar(bloco)
     resultado += extrair_dados(bloco_corrigido)
 
   if not 0 <= tamanho_original <= len(resultado):
