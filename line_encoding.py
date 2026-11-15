@@ -3,12 +3,14 @@ import numpy as np
 def nrz_unipolar(bits, A, apb):
   print("Codificando com NRZ Unipolar...")
   nrz_unipolar = np.repeat(bits * A, apb)
+  print("NRZ Unipolar codificado com sucesso!")
   return nrz_unipolar
 
 def manchester(bits, A, apb):
   print("Codificando com Manchester IEEE 802.3...")
   manchester_half = np.where(bits[:, None] == 1, [-A, A], [A, -A])
   manchester = np.repeat(manchester_half, apb // 2, axis=1).reshape(-1)
+  print("Manchester codificado com sucesso!")
   return manchester
 
 
