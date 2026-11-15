@@ -3,6 +3,7 @@ import channel as c
 import line_encoding as le
 import metrics
 import modulator as mod
+import numpy as np
 
 MODO_TRANSMISSAO = "LINHA" # "LINHA", "MODULACAO"
 CODIFICACAO_LINHA = "MANCHESTER" # "NRZ", "MANCHESTER"
