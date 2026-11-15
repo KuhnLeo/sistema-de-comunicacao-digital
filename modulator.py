@@ -106,12 +106,12 @@ def demo_16qam(sinal_rx, A, apb, fp, t):
 
   bits_rx = []
 
-  for i in range(0, len(sina_rx), amostras_simbolo):
+  for i in range(0, len(sinal_rx), amostras_simbolo):
     fim = i + amostras_simbolo
     trecho = sinal_rx[i:fim]
 
     ref_i = portadora_i[i:fim]
-    ref_Q = portadora_Q[i:fim]
+    ref_q = portadora_q[i:fim]
 
     i = np.mean(trecho * ref_i) * 2 / normalizacao
     q = -np.mean(trecho * ref_q) * 2 / normalizacao
