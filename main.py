@@ -1,7 +1,6 @@
 import binary_manipulation as bm
 import channel as c
 import line_encoding as le
-import metrics
 import modulator as mod
 import numpy as np
 
