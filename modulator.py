@@ -10,7 +10,7 @@ def bpsk(bits, A, apb, fp, t):
   print("Efetuando modulação BPSK...")
   bit_stream = np.repeat(bits, apb)
   bpsk_phase = np.where(bit_stream == 1, 0, np.pi)
-  bpsk = A * np.sin(2 * np.pi * fp, * t + bpsk_phase)
+  bpsk = A * np.sin(2 * np.pi * fp * t + bpsk_phase)
   print("Modulação BPSK feita com sucesso!")
   return bpsk
 
@@ -79,7 +79,7 @@ def demo_bpsk(sinal_rx, A, apb, fp, t):
     fim = inicio + apb
 
     trecho = sinal_rx[inicio:fim]
-    rerferencia = portadora[inicio:fim]
+    referencia = portadora[inicio:fim]
     correlacao = np.mean(trecho * referencia)
 
     if correlacao >= 0:
