@@ -1,7 +1,11 @@
-import binary_conversor as bc
+import binary_manipulation as bm
+import channel as c
+import line_encoding as le
+import metrics
+import modulator as mod
 
 mensagem = "Inter maior do mundo"
 
-binario = bc.ascii_to_binary(mensagem)
+binario = bm.ascii_to_binary(mensagem)
 
-ascii = bc.binary_to_ascii(binario)
+ascii = bm.binary_to_ascii(binario)
