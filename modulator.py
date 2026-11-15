@@ -16,7 +16,6 @@ def bpsk(bits, A, apb, fp, t):
 
 def qam16(bits, A, apb, fp, t):
   print("Efetuando modulação 16-QAM...")
-  # s(t) = (A / √10)[I cos(2pi fpt) - Q sin(2pi fpt)
   if len(bits) % 4 != 0:
     raise ValueError("A quantidade de bits deve ser múltipla de 4")
 
@@ -32,12 +31,11 @@ def qam16(bits, A, apb, fp, t):
   i = np.repeat(i, amostras_simbolo)
   q = np.repeat(q, amostras_simbolo)
 
-  normalizacao = A / np.sqrt(10)
 
   portadora_i = np.cos(2 * np.pi * fp * t)
   portadora_q = np.sin(2 * np.pi * fp * t)
 
-  sinal = normalizacao * (i * portadora_i - q * portadora_q)
+  sinal = A * (i * portadora_i - q * portadora_q)
   print("Modulação 16-QAM feita com sucesso!")
   return sinal
 
@@ -99,7 +97,6 @@ def demo_16qam(sinal_rx, A, apb, fp, t):
     raise ValueError("Tamanho do sinal inválido")
 
   niveis = np.array([-3, -1, 3, 1])
-  normalizacao = A / np.sqrt(10)
 
   portadora_i = np.cos(2 * np.pi * fp * t)
   portadora_q = np.sin(2 * np.pi * fp * t)
@@ -113,8 +110,8 @@ def demo_16qam(sinal_rx, A, apb, fp, t):
     ref_i = portadora_i[i:fim]
     ref_q = portadora_q[i:fim]
 
-    i = np.mean(trecho * ref_i) * 2 / normalizacao
-    q = -np.mean(trecho * ref_q) * 2 / normalizacao
+    i = np.mean(trecho * ref_i) * 2 / A
+    q = -np.mean(trecho * ref_q) * 2 / A
 
     ind_i = np.argmin(np.abs(niveis - i))
     ind_q = np.argmin(np.abs(niveis - q))
@@ -126,4 +123,3 @@ def demo_16qam(sinal_rx, A, apb, fp, t):
     
   print("16-QAM demodulado com sucesso!")
   return np.array(bits_rx, dtype=int)
-
