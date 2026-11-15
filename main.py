@@ -7,7 +7,7 @@ import modulator as mod
 # ------------ Fonte de Informação -------------
 print("Fase 1: Fonte de informação\n")
 mensagem = "Inter maior do mundo"
-print("Mensagem: ", mensagem)
+print("Mensagem definida: ", mensagem)
 # ------------ Codificador de Fonte --------------
 binario = bm.ascii_to_binary(mensagem)
 
