@@ -5,10 +5,10 @@ import metrics
 import modulator as mod
 import numpy as np
 
-MODO_TRANSMISSAO = "LINHA" # "LINHA", "MODULACAO"
+MODO_TRANSMISSAO = "MODULACAO" # "LINHA", "MODULACAO"
 CODIFICACAO_LINHA = "MANCHESTER" # "NRZ", "MANCHESTER"
 MODULACAO = "ASK" # "ASK", "BPSK", "16QAM"
-CANAL = "AWGN" # "AWGN", "RAJADAS"
+CANAL = "RAJADAS" # "AWGN", "RAJADAS"
 
 A = 1.0            # AMPLITUDE
 APB = 20           # AMOSTRAS POR BIT (COM MANCHESTER DEVE SER PAR)
@@ -16,8 +16,9 @@ FP = 2.0           # FREQUENCIA DA PORTADORA
 EBN0_DB = 10.0     # SNR
 SEED = 42
 
+
 def executar_validacao_unica():
-  rmg = np.random.default_rng(SEED)
+  rng = np.random.default_rng(SEED)
   print("======== Iniciando simulação ========\n")
 
   
@@ -37,23 +38,24 @@ def executar_validacao_unica():
   pad_16qam = 0
   if MODO_TRANSMISSAO == "MODULACAO" and MODULACAO == "16QAM":
     resto = len(bits_tx) % 4
-  if resto != 0:
-    pad_16qam = 4 - resto
-    bits_tx = np.append(bits_tx, np.zeros(pad_16qam, dtype=int))
+    if resto != 0:
+      pad_16qam = 4 - resto
+      bits_tx = np.append(bits_tx, np.zeros(pad_16qam, dtype=int))
 
   n_bits_transmissao = len(bits_tx)
 
   
   # Codificação de linha ou Modulação
+  t = np.arange(len(bits_tx) * APB) / APB
+
   if MODO_TRANSMISSAO == "LINHA":
     print("----- Codificação de Linha -----")
     if CODIFICACAO_LINHA == "NRZ":
-      sinal_linha = le.nrz_unipolar(bits_tx, A, APB)
+      sinal_tx = le.nrz_unipolar(bits_tx, A, APB)
     elif CODIFICACAO_LINHA == "MANCHESTER":
-      sinal_linha = le.manchester(bits_tx, A, APB)
+      sinal_tx = le.manchester(bits_tx, A, APB)
     else:
       raise ValueError("Codificação inválida!")
-      
   elif MODO_TRANSMISSAO == "MODULACAO":
     print("----- Modulação -----")
     if MODULACAO == "ASK":
@@ -91,6 +93,7 @@ def executar_validacao_unica():
       bits_rx = le.decode_manchester(sinal_rx, A, APB)
 
   elif MODO_TRANSMISSAO == "MODULACAO":
+    t = np.arange(n_bits_transmissao * APB) / APB
     print("----- Demodulação -----")
     if MODULACAO == "ASK":
       bits_rx = mod.demo_ask(sinal_rx, A, APB, FP, t)
@@ -106,7 +109,7 @@ def executar_validacao_unica():
 
   print("----- Decodificação de Canal -----")
   bits_rx_str = "".join(str(b) for b in bits_rx)
-  bits_recuperados_str = bm.decodificar_mensagem(bits_rx_str, tam_original_hamming)
+  bits_recuperados_str = bm.decodificar_mensagem(bits_rx_str, tam_original)
   bits_recuperados = np.array([int(b) for b in bits_recuperados_str], dtype=int)
   print(f"Decodificação com Hamming concluída: {len(bits_recuperados)} bits recuperados")
 
