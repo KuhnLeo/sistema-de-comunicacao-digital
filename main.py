@@ -8,7 +8,9 @@ import modulator as mod
 print("Fase 1: Fonte de informação\n")
 mensagem = "Inter maior do mundo"
 print("Mensagem definida: ", mensagem)
+
 # ------------ Codificador de Fonte --------------
+print("Fase 2: Codificador de fonte\n")
 binario = bm.ascii_to_binary(mensagem)
 
 # ------------ Codificação de Canal --------------
