@@ -10,7 +10,6 @@ def binary_to_ascii(binario):
   return ascii
 
 def codificar(dados):
-  print("Codificando a mensagem com Hamming...")
   codigo = [0] * 7
   posicoes_dados = [2, 4, 5, 6]
 
@@ -28,7 +27,6 @@ def codificar(dados):
   return "".join(str(bit) for bit in codigo)
 
 def verificar(resultado):
-  print("Verificando erros com Hamming...")
   codigo = [int(bit) for bit in resultado]
   posicoes_paridade = [0, 1, 3]
   sindrome = 0
@@ -53,6 +51,7 @@ def extrair_dados(codigo):
   return "".join(codigo[i] for i in posicoes_dados)
 
 def codificar_mensagem(bits):
+  print("Codificando mensagem com Hamming(7,4)...")
   tamanho_original = len(bits)
   while len(bits) % 4 != 0:
     bits += "0"
@@ -62,10 +61,11 @@ def codificar_mensagem(bits):
   for i in range(0, len(bits), 4):
     bloco = bits[i:i + 4]
     resultado +=  codificar(bloco)
-
+  print("Mensagem codificada!\nMensagem resultante: ", resultado)
   return resultado, tamanho_original
 
 def decodificar_mensagem(bits_codificados, tamanho_original):
+  print("Decodificando mensagem com Hamming(7,4)...")
   resultado = ""
   for i in range(0, len(bits_codificados), 7):
     bloco = bits_codificados[i:i + 7]
@@ -75,4 +75,5 @@ def decodificar_mensagem(bits_codificados, tamanho_original):
   if not 0 <= tamanho_original <= len(resultado):
     raise ValueError("Tamanho original inválido")
 
+  print("Mensagem decodificada!)
   return resultado[:tamanho_original]
