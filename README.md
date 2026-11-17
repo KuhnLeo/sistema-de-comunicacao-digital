@@ -20,3 +20,6 @@ FP - frequência da portadora. Determina a frequência em Hz;
 SNR - relação sinal-ruído. Quanto maior significa que menos ruídos ocorrerão. À medida que é diminuído aumenta a incidência de ruídos;
 
 SEED - semente geradora de ruídos. Para evitar padrões aleatórios.
+
+
+Vídeo Sistema em Execução: https://youtu.be/S9PjqWY7q8g?si=kipOz636UEilOWhw
